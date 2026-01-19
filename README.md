@@ -1,72 +1,127 @@
-**Project Title:**
-**Credit Card Fraud Detection using Machine Learning and Sampling Techniques**
+# Credit Card Fraud Detection using Machine Learning and Sampling Techniques
 
-**Introduction:**
-Credit card fraud detection is an important problem in machine learning. In real-world data, fraudulent transactions are very few compared to normal transactions. This makes the dataset imbalanced 
-and difficult for machine learning models to learn correctly. In this assignment, we handle the imbalance problem using different sampling techniques and apply multiple machine learning models.
+---
 
-**Dataset**
+## Introduction
+Credit card fraud detection is an important problem in machine learning.
 
-1.The credit card fraud detection dataset is imbalanced
-2.Fraud transactions are very few compared to non-fraud ones
+In real-world data, fraudulent transactions are very few compared to normal transactions.  
+This makes the dataset imbalanced and difficult for machine learning models to learn correctly.
 
-**Balancing the dataset**
+In this assignment, we handle the imbalance problem using different sampling techniques and apply multiple machine learning models.
 
-1.Random Under-Sampling:It reduces the majority class and makes both classes equal.
-Risk: loss of useful data
+---
 
-2️.Random Over-Sampling:It duplicates minority class samples and improves fraud detection.
-Risk: overfitting
+## Dataset
+- The credit card fraud detection dataset is **imbalanced**
+- Fraud transactions are very few compared to non-fraud transactions
 
-3.SMOTE (Synthetic Minority Over-sampling Technique):It generates synthetic fraud samples and preserves data diversity.
+---
 
-4.NearMiss:It selects majority samples closest to minority class and do aggressive under-sampling.
-Lower performance observed
+## Balancing the Dataset
+To handle class imbalance, the following sampling techniques were used:
 
-5.SMOTE-Tomek:It is combination of over-sampling + cleaning noisy samples
-Produces a well-balanced and cleaner dataset
+### 1. Random Under-Sampling
+- Reduces the majority class
+- Makes both classes equal  
+- **Risk:** Loss of useful data
 
-**Machine Learning Models Implemented**
+### 2. Random Over-Sampling
+- Duplicates minority class samples
+- Improves fraud detection  
+- **Risk:** Overfitting
 
+### 3. SMOTE (Synthetic Minority Over-sampling Technique)
+- Generates synthetic fraud samples
+- Preserves data diversity
+
+### 4. NearMiss
+- Selects majority samples closest to the minority class
+- Performs aggressive under-sampling  
+- **Result:** Lower performance observed
+
+### 5. SMOTE-Tomek
+- Combination of over-sampling and removal of noisy samples
+- Produces a cleaner and well-balanced dataset
+
+---
+
+## Machine Learning Models Implemented
 The following models were trained on each of the five sampled datasets:
 
-1.Logistic Regression
-2.Decision Tree
-3.Random Forest
-4.K-Nearest Neighbors (KNN)
-5.Support Vector Machine (SVM)
+1. Logistic Regression  
+2. Decision Tree  
+3. Random Forest  
+4. K-Nearest Neighbors (KNN)  
+5. Support Vector Machine (SVM)
 
-**Model-wise Best Sampling Technique**
+---
 
-M1 – Logistic Regression
-Best accuracy:Sampling5 (SMOTETomek) -> 93.53%
-Very close: Sampling3 (SMOTE) -> 93.10%
-Worst performance:Sampling4 (NearMiss) -> 18.53%
-Explanation:Logistic Regression benefits from oversampling techniques because they balance the class distribution without losing important data. NearMiss removes too much data, hurting performance.
+## Model-wise Best Sampling Technique
 
-M2 – Decision Tree
-Best accuracy:Sampling2 (RandomOver) -> 98.71%
-strong: Sampling3 (SMOTE) -> 98.71%
-Worst performance:Sampling4 (NearMiss) -> 15.95%
-Explanation:Decision Trees handle oversampled data well, but aggressive undersampling (NearMiss) removes critical patterns.
+### M1 – Logistic Regression
+- **Best Accuracy:**  
+  - Sampling5 (SMOTE-Tomek) → **93.53%**
+- **Very Close:**  
+  - Sampling3 (SMOTE) → 93.10%
+- **Worst Performance:**  
+  - Sampling4 (NearMiss) → 18.53%
 
-M3 – Random Forest
-Best accuracy:Sampling2 (RandomOver) -> 99.14% , Sampling3 (SMOTE) -> 99.14%
-Worst performance:Sampling4 (NearMiss) -> 55.60%
-Explanation:Random Forest performs best with balanced and rich datasets, which is achieved using Random Oversampling and SMOTE.
+**Explanation:**  
+Logistic Regression benefits from oversampling techniques because they balance the class distribution without losing important data. NearMiss removes too much data, which hurts performance.
 
-M4 – KNN
-Best accuracy:Sampling2 (RandomOver) -> 97.84%
-Worst performance:Sampling4 (NearMiss) -> 39.66%
-Explanation:KNN is sensitive to data distribution. Oversampling improves neighborhood representation, while undersampling degrades it.
+---
 
-M5 – SVM
-Best accuracy:Sampling1 (RandomUnder) -> 77.16% , Sampling2 (RandomOver) → 87.50%
-Worst performance:Sampling3 (SMOTE) -> 44.40%
-Explanation:SVM struggles with synthetic samples generated by SMOTE and performs better with real data points.
+### M2 – Decision Tree
+- **Best Accuracy:**  
+  - Sampling2 (Random Over-Sampling) → **98.71%**
+  - Sampling3 (SMOTE) → 98.71%
+- **Worst Performance:**  
+  - Sampling4 (NearMiss) → 15.95%
 
-**Conclusion**
-Random Oversampling and SMOTE gave the best results overall, while NearMiss performed the worst due to excessive data loss.
+**Explanation:**  
+Decision Trees handle oversampled data well, but aggressive under-sampling removes important patterns.
 
+---
 
+### M3 – Random Forest
+- **Best Accuracy:**  
+  - Sampling2 (Random Over-Sampling) → **99.14%**
+  - Sampling3 (SMOTE) → **99.14%**
+- **Worst Performance:**  
+  - Sampling4 (NearMiss) → 55.60%
 
+**Explanation:**  
+Random Forest performs best with balanced and information-rich datasets, achieved using Random Over-Sampling and SMOTE.
+
+---
+
+### M4 – K-Nearest Neighbors (KNN)
+- **Best Accuracy:**  
+  - Sampling2 (Random Over-Sampling) → **97.84%**
+- **Worst Performance:**  
+  - Sampling4 (NearMiss) → 39.66%
+
+**Explanation:**  
+KNN is sensitive to data distribution. Oversampling improves neighborhood representation, while undersampling degrades it.
+
+---
+
+### M5 – Support Vector Machine (SVM)
+- **Best Accuracy:**  
+  - Sampling1 (Random Under-Sampling) → 77.16%  
+  - Sampling2 (Random Over-Sampling) → **87.50%**
+- **Worst Performance:**  
+  - Sampling3 (SMOTE) → 44.40%
+
+**Explanation:**  
+SVM struggles with synthetic samples generated by SMOTE and performs better with real data points.
+
+---
+
+## Conclusion
+Random Over-Sampling and SMOTE gave the best overall results.
+
+NearMiss performed the worst due to excessive data loss during under-sampling.
+
+Handling class imbalance is crucial for improving fraud detection performance.
